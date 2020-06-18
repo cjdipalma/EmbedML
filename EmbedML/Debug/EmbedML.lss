@@ -1,0 +1,714 @@
+
+EmbedML.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000003ec  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000398  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  000003ec  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000041c  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000e8  00000000  00000000  0000045c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000011ba  00000000  00000000  00000544  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000aab  00000000  00000000  000016fe  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000007da  00000000  00000000  000021a9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000002f8  00000000  00000000  00002984  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000521  00000000  00000000  00002c7c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000c61  00000000  00000000  0000319d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000e8  00000000  00000000  00003dfe  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	45 c0       	rjmp	.+138    	; 0x8c <__ctors_end>
+   2:	00 00       	nop
+   4:	60 c0       	rjmp	.+192    	; 0xc6 <__bad_interrupt>
+   6:	00 00       	nop
+   8:	5e c0       	rjmp	.+188    	; 0xc6 <__bad_interrupt>
+   a:	00 00       	nop
+   c:	5c c0       	rjmp	.+184    	; 0xc6 <__bad_interrupt>
+   e:	00 00       	nop
+  10:	5a c0       	rjmp	.+180    	; 0xc6 <__bad_interrupt>
+  12:	00 00       	nop
+  14:	58 c0       	rjmp	.+176    	; 0xc6 <__bad_interrupt>
+  16:	00 00       	nop
+  18:	56 c0       	rjmp	.+172    	; 0xc6 <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	54 c0       	rjmp	.+168    	; 0xc6 <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	52 c0       	rjmp	.+164    	; 0xc6 <__bad_interrupt>
+  22:	00 00       	nop
+  24:	50 c0       	rjmp	.+160    	; 0xc6 <__bad_interrupt>
+  26:	00 00       	nop
+  28:	4e c0       	rjmp	.+156    	; 0xc6 <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	4c c0       	rjmp	.+152    	; 0xc6 <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	4a c0       	rjmp	.+148    	; 0xc6 <__bad_interrupt>
+  32:	00 00       	nop
+  34:	48 c0       	rjmp	.+144    	; 0xc6 <__bad_interrupt>
+  36:	00 00       	nop
+  38:	46 c0       	rjmp	.+140    	; 0xc6 <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	44 c0       	rjmp	.+136    	; 0xc6 <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	42 c0       	rjmp	.+132    	; 0xc6 <__bad_interrupt>
+  42:	00 00       	nop
+  44:	40 c0       	rjmp	.+128    	; 0xc6 <__bad_interrupt>
+  46:	00 00       	nop
+  48:	3e c0       	rjmp	.+124    	; 0xc6 <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	3c c0       	rjmp	.+120    	; 0xc6 <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	3a c0       	rjmp	.+116    	; 0xc6 <__bad_interrupt>
+  52:	00 00       	nop
+  54:	38 c0       	rjmp	.+112    	; 0xc6 <__bad_interrupt>
+  56:	00 00       	nop
+  58:	36 c0       	rjmp	.+108    	; 0xc6 <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	34 c0       	rjmp	.+104    	; 0xc6 <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	32 c0       	rjmp	.+100    	; 0xc6 <__bad_interrupt>
+  62:	00 00       	nop
+  64:	30 c0       	rjmp	.+96     	; 0xc6 <__bad_interrupt>
+  66:	00 00       	nop
+  68:	2e c0       	rjmp	.+92     	; 0xc6 <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	2c c0       	rjmp	.+88     	; 0xc6 <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	2a c0       	rjmp	.+84     	; 0xc6 <__bad_interrupt>
+  72:	00 00       	nop
+  74:	28 c0       	rjmp	.+80     	; 0xc6 <__bad_interrupt>
+  76:	00 00       	nop
+  78:	26 c0       	rjmp	.+76     	; 0xc6 <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	24 c0       	rjmp	.+72     	; 0xc6 <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	22 c0       	rjmp	.+68     	; 0xc6 <__bad_interrupt>
+  82:	00 00       	nop
+  84:	20 c0       	rjmp	.+64     	; 0xc6 <__bad_interrupt>
+  86:	00 00       	nop
+  88:	1e c0       	rjmp	.+60     	; 0xc6 <__bad_interrupt>
+	...
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e4       	ldi	r29, 0x40	; 64
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_copy_data>:
+  98:	11 e0       	ldi	r17, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	e8 e9       	ldi	r30, 0x98	; 152
+  a0:	f3 e0       	ldi	r31, 0x03	; 3
+  a2:	00 e0       	ldi	r16, 0x00	; 0
+  a4:	0b bf       	out	0x3b, r16	; 59
+  a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
+  a8:	07 90       	elpm	r0, Z+
+  aa:	0d 92       	st	X+, r0
+  ac:	a0 30       	cpi	r26, 0x00	; 0
+  ae:	b1 07       	cpc	r27, r17
+  b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
+
+000000b2 <__do_clear_bss>:
+  b2:	21 e0       	ldi	r18, 0x01	; 1
+  b4:	a0 e0       	ldi	r26, 0x00	; 0
+  b6:	b1 e0       	ldi	r27, 0x01	; 1
+  b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
+
+000000ba <.do_clear_bss_loop>:
+  ba:	1d 92       	st	X+, r1
+
+000000bc <.do_clear_bss_start>:
+  bc:	a0 30       	cpi	r26, 0x00	; 0
+  be:	b2 07       	cpc	r27, r18
+  c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
+  c2:	14 d1       	rcall	.+552    	; 0x2ec <main>
+  c4:	67 c1       	rjmp	.+718    	; 0x394 <_exit>
+
+000000c6 <__bad_interrupt>:
+  c6:	9c cf       	rjmp	.-200    	; 0x0 <__vectors>
+
+000000c8 <set_si_port>:
+	
+	for(int i=0; i<4; ++i)
+	{
+		ram_write(addr+i, p[i], 1);
+	}
+}
+  c8:	88 23       	and	r24, r24
+  ca:	11 f0       	breq	.+4      	; 0xd0 <set_si_port+0x8>
+  cc:	41 9a       	sbi	0x08, 1	; 8
+  ce:	08 95       	ret
+  d0:	41 98       	cbi	0x08, 1	; 8
+  d2:	08 95       	ret
+
+000000d4 <select_ram>:
+  d4:	40 98       	cbi	0x08, 0	; 8
+  d6:	08 95       	ret
+
+000000d8 <deselect_ram>:
+  d8:	40 9a       	sbi	0x08, 0	; 8
+  da:	08 95       	ret
+
+000000dc <set_sck>:
+  dc:	42 9a       	sbi	0x08, 2	; 8
+  de:	08 95       	ret
+
+000000e0 <clr_sck>:
+  e0:	42 98       	cbi	0x08, 2	; 8
+  e2:	08 95       	ret
+
+000000e4 <ram_init>:
+  e4:	38 9a       	sbi	0x07, 0	; 7
+  e6:	39 9a       	sbi	0x07, 1	; 7
+  e8:	3a 9a       	sbi	0x07, 2	; 7
+  ea:	3b 98       	cbi	0x07, 3	; 7
+  ec:	f5 cf       	rjmp	.-22     	; 0xd8 <deselect_ram>
+  ee:	08 95       	ret
+
+000000f0 <ram_write>:
+  f0:	8f 92       	push	r8
+  f2:	9f 92       	push	r9
+  f4:	af 92       	push	r10
+  f6:	bf 92       	push	r11
+  f8:	df 92       	push	r13
+  fa:	ef 92       	push	r14
+  fc:	ff 92       	push	r15
+  fe:	0f 93       	push	r16
+ 100:	1f 93       	push	r17
+ 102:	cf 93       	push	r28
+ 104:	df 93       	push	r29
+ 106:	f6 2e       	mov	r15, r22
+ 108:	d4 2e       	mov	r13, r20
+ 10a:	48 01       	movw	r8, r16
+ 10c:	59 01       	movw	r10, r18
+ 10e:	e2 df       	rcall	.-60     	; 0xd4 <select_ram>
+ 110:	81 e0       	ldi	r24, 0x01	; 1
+ 112:	90 e0       	ldi	r25, 0x00	; 0
+ 114:	9b d0       	rcall	.+310    	; 0x24c <avr_wait>
+ 116:	c6 e0       	ldi	r28, 0x06	; 6
+ 118:	d0 e0       	ldi	r29, 0x00	; 0
+ 11a:	01 c0       	rjmp	.+2      	; 0x11e <ram_write+0x2e>
+ 11c:	21 97       	sbiw	r28, 0x01	; 1
+ 11e:	20 97       	sbiw	r28, 0x00	; 0
+ 120:	29 f4       	brne	.+10     	; 0x12c <ram_write+0x3c>
+ 122:	81 e0       	ldi	r24, 0x01	; 1
+ 124:	d1 df       	rcall	.-94     	; 0xc8 <set_si_port>
+ 126:	da df       	rcall	.-76     	; 0xdc <set_sck>
+ 128:	db df       	rcall	.-74     	; 0xe0 <clr_sck>
+ 12a:	f8 cf       	rjmp	.-16     	; 0x11c <ram_write+0x2c>
+ 12c:	80 e0       	ldi	r24, 0x00	; 0
+ 12e:	cc df       	rcall	.-104    	; 0xc8 <set_si_port>
+ 130:	d5 df       	rcall	.-86     	; 0xdc <set_sck>
+ 132:	d6 df       	rcall	.-84     	; 0xe0 <clr_sck>
+ 134:	dd 23       	and	r29, r29
+ 136:	94 f7       	brge	.-28     	; 0x11c <ram_write+0x2c>
+ 138:	c7 e1       	ldi	r28, 0x17	; 23
+ 13a:	d0 e0       	ldi	r29, 0x00	; 0
+ 13c:	01 e0       	ldi	r16, 0x01	; 1
+ 13e:	10 e0       	ldi	r17, 0x00	; 0
+ 140:	c8 01       	movw	r24, r16
+ 142:	0c 2e       	mov	r0, r28
+ 144:	02 c0       	rjmp	.+4      	; 0x14a <ram_write+0x5a>
+ 146:	88 0f       	add	r24, r24
+ 148:	99 1f       	adc	r25, r25
+ 14a:	0a 94       	dec	r0
+ 14c:	e2 f7       	brpl	.-8      	; 0x146 <ram_write+0x56>
+ 14e:	8f 21       	and	r24, r15
+ 150:	bb df       	rcall	.-138    	; 0xc8 <set_si_port>
+ 152:	c4 df       	rcall	.-120    	; 0xdc <set_sck>
+ 154:	c5 df       	rcall	.-118    	; 0xe0 <clr_sck>
+ 156:	21 97       	sbiw	r28, 0x01	; 1
+ 158:	98 f7       	brcc	.-26     	; 0x140 <ram_write+0x50>
+ 15a:	18 14       	cp	r1, r8
+ 15c:	19 04       	cpc	r1, r9
+ 15e:	1a 04       	cpc	r1, r10
+ 160:	1b 04       	cpc	r1, r11
+ 162:	e4 f0       	brlt	.+56     	; 0x19c <ram_write+0xac>
+ 164:	22 c0       	rjmp	.+68     	; 0x1aa <ram_write+0xba>
+ 166:	c8 01       	movw	r24, r16
+ 168:	0c 2e       	mov	r0, r28
+ 16a:	02 c0       	rjmp	.+4      	; 0x170 <ram_write+0x80>
+ 16c:	88 0f       	add	r24, r24
+ 16e:	99 1f       	adc	r25, r25
+ 170:	0a 94       	dec	r0
+ 172:	e2 f7       	brpl	.-8      	; 0x16c <ram_write+0x7c>
+ 174:	8d 21       	and	r24, r13
+ 176:	a8 df       	rcall	.-176    	; 0xc8 <set_si_port>
+ 178:	b1 df       	rcall	.-158    	; 0xdc <set_sck>
+ 17a:	b2 df       	rcall	.-156    	; 0xe0 <clr_sck>
+ 17c:	21 97       	sbiw	r28, 0x01	; 1
+ 17e:	98 f7       	brcc	.-26     	; 0x166 <ram_write+0x76>
+ 180:	2f ef       	ldi	r18, 0xFF	; 255
+ 182:	e2 1a       	sub	r14, r18
+ 184:	f2 0a       	sbc	r15, r18
+ 186:	c7 01       	movw	r24, r14
+ 188:	0f 2c       	mov	r0, r15
+ 18a:	00 0c       	add	r0, r0
+ 18c:	aa 0b       	sbc	r26, r26
+ 18e:	bb 0b       	sbc	r27, r27
+ 190:	88 15       	cp	r24, r8
+ 192:	99 05       	cpc	r25, r9
+ 194:	aa 05       	cpc	r26, r10
+ 196:	bb 05       	cpc	r27, r11
+ 198:	2c f0       	brlt	.+10     	; 0x1a4 <ram_write+0xb4>
+ 19a:	07 c0       	rjmp	.+14     	; 0x1aa <ram_write+0xba>
+ 19c:	e1 2c       	mov	r14, r1
+ 19e:	f1 2c       	mov	r15, r1
+ 1a0:	01 e0       	ldi	r16, 0x01	; 1
+ 1a2:	10 e0       	ldi	r17, 0x00	; 0
+ 1a4:	c7 e0       	ldi	r28, 0x07	; 7
+ 1a6:	d0 e0       	ldi	r29, 0x00	; 0
+ 1a8:	de cf       	rjmp	.-68     	; 0x166 <ram_write+0x76>
+ 1aa:	96 df       	rcall	.-212    	; 0xd8 <deselect_ram>
+ 1ac:	df 91       	pop	r29
+ 1ae:	cf 91       	pop	r28
+ 1b0:	1f 91       	pop	r17
+ 1b2:	0f 91       	pop	r16
+ 1b4:	ff 90       	pop	r15
+ 1b6:	ef 90       	pop	r14
+ 1b8:	df 90       	pop	r13
+ 1ba:	bf 90       	pop	r11
+ 1bc:	af 90       	pop	r10
+ 1be:	9f 90       	pop	r9
+ 1c0:	8f 90       	pop	r8
+ 1c2:	08 95       	ret
+
+000001c4 <ram_read>:
+
+
+// 24-bit address, 8-bit data
+unsigned char ram_read(long addr)
+{
+ 1c4:	ef 92       	push	r14
+ 1c6:	ff 92       	push	r15
+ 1c8:	1f 93       	push	r17
+ 1ca:	cf 93       	push	r28
+ 1cc:	df 93       	push	r29
+ 1ce:	16 2f       	mov	r17, r22
+	select_ram();
+ 1d0:	81 df       	rcall	.-254    	; 0xd4 <select_ram>
+	
+	// Read instruction
+	for(int i=7; i>=0; --i)
+ 1d2:	c7 e0       	ldi	r28, 0x07	; 7
+ 1d4:	d0 e0       	ldi	r29, 0x00	; 0
+	{
+		if (i <= 1)	set_si_port(1);
+ 1d6:	c2 30       	cpi	r28, 0x02	; 2
+ 1d8:	d1 05       	cpc	r29, r1
+ 1da:	1c f4       	brge	.+6      	; 0x1e2 <ram_read+0x1e>
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	74 df       	rcall	.-280    	; 0xc8 <set_si_port>
+ 1e0:	02 c0       	rjmp	.+4      	; 0x1e6 <ram_read+0x22>
+		else		set_si_port(0);
+ 1e2:	80 e0       	ldi	r24, 0x00	; 0
+		set_sck();
+ 1e4:	71 df       	rcall	.-286    	; 0xc8 <set_si_port>
+ 1e6:	7a df       	rcall	.-268    	; 0xdc <set_sck>
+		clr_sck();
+ 1e8:	7b df       	rcall	.-266    	; 0xe0 <clr_sck>
+ 1ea:	21 97       	sbiw	r28, 0x01	; 1
+unsigned char ram_read(long addr)
+{
+	select_ram();
+	
+	// Read instruction
+	for(int i=7; i>=0; --i)
+ 1ec:	a0 f7       	brcc	.-24     	; 0x1d6 <ram_read+0x12>
+ 1ee:	c7 e1       	ldi	r28, 0x17	; 23
+ 1f0:	d0 e0       	ldi	r29, 0x00	; 0
+ 1f2:	ee 24       	eor	r14, r14
+	}
+	
+	// Address
+	for(int i=23; i>=0; --i)
+	{
+		set_si_port(GET_BIT(addr, i));
+ 1f4:	e3 94       	inc	r14
+ 1f6:	f1 2c       	mov	r15, r1
+ 1f8:	c7 01       	movw	r24, r14
+ 1fa:	0c 2e       	mov	r0, r28
+ 1fc:	02 c0       	rjmp	.+4      	; 0x202 <ram_read+0x3e>
+ 1fe:	88 0f       	add	r24, r24
+ 200:	99 1f       	adc	r25, r25
+ 202:	0a 94       	dec	r0
+ 204:	e2 f7       	brpl	.-8      	; 0x1fe <ram_read+0x3a>
+ 206:	81 23       	and	r24, r17
+		set_sck();
+ 208:	5f df       	rcall	.-322    	; 0xc8 <set_si_port>
+ 20a:	68 df       	rcall	.-304    	; 0xdc <set_sck>
+		clr_sck();
+ 20c:	69 df       	rcall	.-302    	; 0xe0 <clr_sck>
+ 20e:	21 97       	sbiw	r28, 0x01	; 1
+		set_sck();
+		clr_sck();
+	}
+	
+	// Address
+	for(int i=23; i>=0; --i)
+ 210:	98 f7       	brcc	.-26     	; 0x1f8 <ram_read+0x34>
+ 212:	c7 e0       	ldi	r28, 0x07	; 7
+ 214:	d0 e0       	ldi	r29, 0x00	; 0
+ 216:	10 e0       	ldi	r17, 0x00	; 0
+ 218:	ee 24       	eor	r14, r14
+	
+	// Receive data
+	for(int i=7; i>=0; --i)
+	{
+		if(get_SO() != 0)
+			SET_BIT(output, i);
+ 21a:	e3 94       	inc	r14
+ 21c:	f1 2c       	mov	r15, r1
+ 21e:	33 9b       	sbis	0x06, 3	; 6
+	unsigned char output = 0;
+	
+	// Receive data
+	for(int i=7; i>=0; --i)
+	{
+		if(get_SO() != 0)
+ 220:	08 c0       	rjmp	.+16     	; 0x232 <ram_read+0x6e>
+ 222:	c7 01       	movw	r24, r14
+			SET_BIT(output, i);
+ 224:	0c 2e       	mov	r0, r28
+ 226:	02 c0       	rjmp	.+4      	; 0x22c <ram_read+0x68>
+ 228:	88 0f       	add	r24, r24
+ 22a:	99 1f       	adc	r25, r25
+ 22c:	0a 94       	dec	r0
+		set_sck();
+ 22e:	e2 f7       	brpl	.-8      	; 0x228 <ram_read+0x64>
+ 230:	18 2b       	or	r17, r24
+		clr_sck();
+ 232:	54 df       	rcall	.-344    	; 0xdc <set_sck>
+ 234:	55 df       	rcall	.-342    	; 0xe0 <clr_sck>
+	}
+	
+	unsigned char output = 0;
+	
+	// Receive data
+	for(int i=7; i>=0; --i)
+ 236:	21 97       	sbiw	r28, 0x01	; 1
+ 238:	90 f7       	brcc	.-28     	; 0x21e <ram_read+0x5a>
+			SET_BIT(output, i);
+		set_sck();
+		clr_sck();
+	}
+	
+	deselect_ram();
+ 23a:	4e df       	rcall	.-356    	; 0xd8 <deselect_ram>
+ 23c:	81 2f       	mov	r24, r17
+	return output;
+}
+ 23e:	df 91       	pop	r29
+ 240:	cf 91       	pop	r28
+ 242:	1f 91       	pop	r17
+ 244:	ff 90       	pop	r15
+ 246:	ef 90       	pop	r14
+ 248:	08 95       	ret
+
+0000024a <ram_close>:
+ 24a:	08 95       	ret
+
+0000024c <avr_wait>:
+#include <avr/io.h>
+#include "helper.h"
+
+void avr_wait(unsigned short cmsec)
+{
+	TCCR0B = 2;
+ 24c:	22 e0       	ldi	r18, 0x02	; 2
+ 24e:	25 bd       	out	0x25, r18	; 37
+	while (cmsec--) {
+		TCNT0 = (unsigned char)(256 - (XTAL_FRQ / 8) * 0.00001);
+ 250:	26 ef       	ldi	r18, 0xF6	; 246
+#include "helper.h"
+
+void avr_wait(unsigned short cmsec)
+{
+	TCCR0B = 2;
+	while (cmsec--) {
+ 252:	04 c0       	rjmp	.+8      	; 0x25c <avr_wait+0x10>
+		TCNT0 = (unsigned char)(256 - (XTAL_FRQ / 8) * 0.00001);
+ 254:	26 bd       	out	0x26, r18	; 38
+		SET_BIT(TIFR0, TOV0);
+ 256:	a8 9a       	sbi	0x15, 0	; 21
+		// WDR();
+		while (!GET_BIT(TIFR0, TOV0));
+ 258:	a8 9b       	sbis	0x15, 0	; 21
+ 25a:	fe cf       	rjmp	.-4      	; 0x258 <avr_wait+0xc>
+#include "helper.h"
+
+void avr_wait(unsigned short cmsec)
+{
+	TCCR0B = 2;
+	while (cmsec--) {
+ 25c:	01 97       	sbiw	r24, 0x01	; 1
+ 25e:	d0 f7       	brcc	.-12     	; 0x254 <avr_wait+0x8>
+		TCNT0 = (unsigned char)(256 - (XTAL_FRQ / 8) * 0.00001);
+		SET_BIT(TIFR0, TOV0);
+		// WDR();
+		while (!GET_BIT(TIFR0, TOV0));
+	}
+	TCCR0B = 0;
+ 260:	15 bc       	out	0x25, r1	; 37
+ 262:	08 95       	ret
+
+00000264 <print_bit>:
+}
+*/
+
+void print_bit(char i, char target)
+{
+	if (i != 0)		SET_BIT(PORTA, target);
+ 264:	88 23       	and	r24, r24
+ 266:	59 f0       	breq	.+22     	; 0x27e <print_bit+0x1a>
+ 268:	22 b1       	in	r18, 0x02	; 2
+ 26a:	81 e0       	ldi	r24, 0x01	; 1
+ 26c:	90 e0       	ldi	r25, 0x00	; 0
+ 26e:	02 c0       	rjmp	.+4      	; 0x274 <print_bit+0x10>
+ 270:	88 0f       	add	r24, r24
+ 272:	99 1f       	adc	r25, r25
+ 274:	6a 95       	dec	r22
+ 276:	e2 f7       	brpl	.-8      	; 0x270 <print_bit+0xc>
+ 278:	82 2b       	or	r24, r18
+ 27a:	82 b9       	out	0x02, r24	; 2
+ 27c:	08 95       	ret
+	else			CLR_BIT(PORTA, target);
+ 27e:	22 b1       	in	r18, 0x02	; 2
+ 280:	81 e0       	ldi	r24, 0x01	; 1
+ 282:	90 e0       	ldi	r25, 0x00	; 0
+ 284:	02 c0       	rjmp	.+4      	; 0x28a <print_bit+0x26>
+ 286:	88 0f       	add	r24, r24
+ 288:	99 1f       	adc	r25, r25
+ 28a:	6a 95       	dec	r22
+ 28c:	e2 f7       	brpl	.-8      	; 0x286 <print_bit+0x22>
+ 28e:	80 95       	com	r24
+ 290:	82 23       	and	r24, r18
+ 292:	82 b9       	out	0x02, r24	; 2
+ 294:	08 95       	ret
+
+00000296 <print_byte>:
+}
+
+void print_byte(unsigned char data)
+{
+ 296:	ff 92       	push	r15
+ 298:	0f 93       	push	r16
+ 29a:	1f 93       	push	r17
+ 29c:	cf 93       	push	r28
+ 29e:	df 93       	push	r29
+ 2a0:	f8 2e       	mov	r15, r24
+	// I think clk 0, output 1. Double check later
+	for (int i=7; i>=0; --i)
+ 2a2:	c7 e0       	ldi	r28, 0x07	; 7
+ 2a4:	d0 e0       	ldi	r29, 0x00	; 0
+	{
+		print_bit(1, 0); // Clock bit on
+		print_bit(GET_BIT(data, i), 1); // Data bit
+ 2a6:	01 e0       	ldi	r16, 0x01	; 1
+ 2a8:	10 e0       	ldi	r17, 0x00	; 0
+void print_byte(unsigned char data)
+{
+	// I think clk 0, output 1. Double check later
+	for (int i=7; i>=0; --i)
+	{
+		print_bit(1, 0); // Clock bit on
+ 2aa:	60 e0       	ldi	r22, 0x00	; 0
+ 2ac:	81 e0       	ldi	r24, 0x01	; 1
+ 2ae:	da df       	rcall	.-76     	; 0x264 <print_bit>
+		print_bit(GET_BIT(data, i), 1); // Data bit
+ 2b0:	c8 01       	movw	r24, r16
+ 2b2:	0c 2e       	mov	r0, r28
+ 2b4:	02 c0       	rjmp	.+4      	; 0x2ba <print_byte+0x24>
+ 2b6:	88 0f       	add	r24, r24
+ 2b8:	99 1f       	adc	r25, r25
+ 2ba:	0a 94       	dec	r0
+ 2bc:	e2 f7       	brpl	.-8      	; 0x2b6 <print_byte+0x20>
+ 2be:	61 e0       	ldi	r22, 0x01	; 1
+ 2c0:	8f 21       	and	r24, r15
+ 2c2:	d0 df       	rcall	.-96     	; 0x264 <print_bit>
+		avr_wait(AVR_WAIT_TIME);
+ 2c4:	88 eb       	ldi	r24, 0xB8	; 184
+ 2c6:	9b e0       	ldi	r25, 0x0B	; 11
+ 2c8:	c1 df       	rcall	.-126    	; 0x24c <avr_wait>
+		print_bit(0, 0);
+ 2ca:	60 e0       	ldi	r22, 0x00	; 0
+ 2cc:	80 e0       	ldi	r24, 0x00	; 0
+ 2ce:	ca df       	rcall	.-108    	; 0x264 <print_bit>
+		print_bit(0, 1);
+ 2d0:	61 e0       	ldi	r22, 0x01	; 1
+ 2d2:	80 e0       	ldi	r24, 0x00	; 0
+ 2d4:	c7 df       	rcall	.-114    	; 0x264 <print_bit>
+		avr_wait(AVR_WAIT_TIME); // Clear clk, and wait
+ 2d6:	88 eb       	ldi	r24, 0xB8	; 184
+ 2d8:	9b e0       	ldi	r25, 0x0B	; 11
+ 2da:	b8 df       	rcall	.-144    	; 0x24c <avr_wait>
+ 2dc:	21 97       	sbiw	r28, 0x01	; 1
+}
+
+void print_byte(unsigned char data)
+{
+	// I think clk 0, output 1. Double check later
+	for (int i=7; i>=0; --i)
+ 2de:	28 f7       	brcc	.-54     	; 0x2aa <print_byte+0x14>
+ 2e0:	df 91       	pop	r29
+		avr_wait(AVR_WAIT_TIME);
+		print_bit(0, 0);
+		print_bit(0, 1);
+		avr_wait(AVR_WAIT_TIME); // Clear clk, and wait
+	}
+ 2e2:	cf 91       	pop	r28
+ 2e4:	1f 91       	pop	r17
+ 2e6:	0f 91       	pop	r16
+ 2e8:	ff 90       	pop	r15
+ 2ea:	08 95       	ret
+
+000002ec <main>:
+ 2ec:	cf 92       	push	r12
+#include "diskio.h"
+#include "helper.h"
+#include <stdlib.h>
+
+int main(void)
+{
+ 2ee:	df 92       	push	r13
+ 2f0:	ef 92       	push	r14
+ 2f2:	ff 92       	push	r15
+ 2f4:	0f 93       	push	r16
+ 2f6:	1f 93       	push	r17
+	// Advanced print-based debugging
+	DDRA = 0b00000011;
+ 2f8:	83 e0       	ldi	r24, 0x03	; 3
+ 2fa:	81 b9       	out	0x01, r24	; 1
+	
+	//* Testing RAM
+	long address = 21;
+	
+	// Reset RAM
+	ram_init();
+ 2fc:	f3 de       	rcall	.-538    	; 0xe4 <ram_init>
+	DDRC = 0b00010111;
+ 2fe:	87 e1       	ldi	r24, 0x17	; 23
+ 300:	87 b9       	out	0x07, r24	; 7
+	PORTC = 0b00010001;
+ 302:	81 e1       	ldi	r24, 0x11	; 17
+ 304:	88 b9       	out	0x08, r24	; 8
+	
+	avr_wait(8000);
+ 306:	80 e4       	ldi	r24, 0x40	; 64
+ 308:	9f e1       	ldi	r25, 0x1F	; 31
+ 30a:	a0 df       	rcall	.-192    	; 0x24c <avr_wait>
+	ram_write(address, 5, 6);
+ 30c:	06 e0       	ldi	r16, 0x06	; 6
+ 30e:	10 e0       	ldi	r17, 0x00	; 0
+ 310:	20 e0       	ldi	r18, 0x00	; 0
+ 312:	30 e0       	ldi	r19, 0x00	; 0
+ 314:	45 e0       	ldi	r20, 0x05	; 5
+ 316:	65 e1       	ldi	r22, 0x15	; 21
+ 318:	70 e0       	ldi	r23, 0x00	; 0
+ 31a:	80 e0       	ldi	r24, 0x00	; 0
+ 31c:	90 e0       	ldi	r25, 0x00	; 0
+ 31e:	e8 de       	rcall	.-560    	; 0xf0 <ram_write>
+	ram_write(address+1, 3, 2);
+ 320:	02 e0       	ldi	r16, 0x02	; 2
+ 322:	10 e0       	ldi	r17, 0x00	; 0
+ 324:	20 e0       	ldi	r18, 0x00	; 0
+ 326:	30 e0       	ldi	r19, 0x00	; 0
+ 328:	43 e0       	ldi	r20, 0x03	; 3
+ 32a:	66 e1       	ldi	r22, 0x16	; 22
+ 32c:	70 e0       	ldi	r23, 0x00	; 0
+ 32e:	80 e0       	ldi	r24, 0x00	; 0
+ 330:	90 e0       	ldi	r25, 0x00	; 0
+	avr_wait(5000);
+ 332:	de de       	rcall	.-580    	; 0xf0 <ram_write>
+ 334:	88 e8       	ldi	r24, 0x88	; 136
+ 336:	93 e1       	ldi	r25, 0x13	; 19
+	unsigned char data = ram_read(address);
+ 338:	89 df       	rcall	.-238    	; 0x24c <avr_wait>
+ 33a:	65 e1       	ldi	r22, 0x15	; 21
+ 33c:	70 e0       	ldi	r23, 0x00	; 0
+ 33e:	80 e0       	ldi	r24, 0x00	; 0
+ 340:	90 e0       	ldi	r25, 0x00	; 0
+	unsigned char data2 = ram_read(address+1);
+ 342:	40 df       	rcall	.-384    	; 0x1c4 <ram_read>
+ 344:	66 e1       	ldi	r22, 0x16	; 22
+ 346:	70 e0       	ldi	r23, 0x00	; 0
+ 348:	80 e0       	ldi	r24, 0x00	; 0
+ 34a:	90 e0       	ldi	r25, 0x00	; 0
+ 34c:	3b df       	rcall	.-394    	; 0x1c4 <ram_read>
+ 34e:	0f 2e       	mov	r0, r31
+ 350:	f5 e1       	ldi	r31, 0x15	; 21
+ 352:	cf 2e       	mov	r12, r31
+ 354:	d1 2c       	mov	r13, r1
+ 356:	e1 2c       	mov	r14, r1
+	
+	// Testing uses two LEDs to represent binary
+	for(int i=0; i<6; ++i)
+	{
+		print_byte(ram_read(address+i));
+ 358:	f1 2c       	mov	r15, r1
+ 35a:	f0 2d       	mov	r31, r0
+ 35c:	c7 01       	movw	r24, r14
+ 35e:	b6 01       	movw	r22, r12
+ 360:	31 df       	rcall	.-414    	; 0x1c4 <ram_read>
+ 362:	99 df       	rcall	.-206    	; 0x296 <print_byte>
+		avr_wait(AVR_WAIT_TIME * 2);
+ 364:	80 e7       	ldi	r24, 0x70	; 112
+ 366:	97 e1       	ldi	r25, 0x17	; 23
+ 368:	71 df       	rcall	.-286    	; 0x24c <avr_wait>
+ 36a:	8f ef       	ldi	r24, 0xFF	; 255
+ 36c:	c8 1a       	sub	r12, r24
+ 36e:	d8 0a       	sbc	r13, r24
+ 370:	e8 0a       	sbc	r14, r24
+ 372:	f8 0a       	sbc	r15, r24
+	avr_wait(5000);
+	unsigned char data = ram_read(address);
+	unsigned char data2 = ram_read(address+1);
+	
+	// Testing uses two LEDs to represent binary
+	for(int i=0; i<6; ++i)
+ 374:	8b e1       	ldi	r24, 0x1B	; 27
+ 376:	c8 16       	cp	r12, r24
+ 378:	d1 04       	cpc	r13, r1
+ 37a:	e1 04       	cpc	r14, r1
+ 37c:	f1 04       	cpc	r15, r1
+ 37e:	71 f7       	brne	.-36     	; 0x35c <main+0x70>
+	{
+		print_byte(ram_read(address+i));
+		avr_wait(AVR_WAIT_TIME * 2);
+	}
+	
+	ram_close();
+ 380:	64 df       	rcall	.-312    	; 0x24a <ram_close>
+ 382:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 384:	90 e0       	ldi	r25, 0x00	; 0
+ 386:	1f 91       	pop	r17
+ 388:	0f 91       	pop	r16
+ 38a:	ff 90       	pop	r15
+ 38c:	ef 90       	pop	r14
+ 38e:	df 90       	pop	r13
+ 390:	cf 90       	pop	r12
+ 392:	08 95       	ret
+
+00000394 <_exit>:
+ 394:	f8 94       	cli
+
+00000396 <__stop_program>:
+ 396:	ff cf       	rjmp	.-2      	; 0x396 <__stop_program>
