@@ -15,12 +15,15 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+#ifndef MNIST_AVR
+#define MNIST_AVR
+
 //#include <sys/time.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "test-avr.h"
+#include "test.h"
 #include "avrmem.h"
 #include "dump-ram.h"
 
@@ -181,7 +184,7 @@ load_labels(const char *pathname, int *n)
 		fclose(file);
 		return 0;
 	}
-	if ((0x1080000 != meta[0]) || (0 >= swap(meta[1]))) {
+	if ((0x1080000UL != meta[0]) || (0 >= swap(meta[1]))) {
 		fclose(file);
 		return 0;
 	}
@@ -216,7 +219,7 @@ load_images(const char *pathname, int *n)
 		fclose(file);
 		return 0;
 	}
-	if ((0x3080000 != meta[0]) ||
+	if ((0x3080000UL != meta[0]) ||
 	    (0  >= swap(meta[1])) ||
 	    (28 != swap(meta[2])) ||
 	    (28 != swap(meta[3]))) {
@@ -240,87 +243,40 @@ load_images(const char *pathname, int *n)
 }
 
 
-////int
-////main()
-////{
-////	int train_y_n, train_x_n, test_y_n, test_x_n;
-////	uint8_t *train_y, *train_x, *test_y, *test_x;
-////	int i, e;
-////
-////	// Start the RAM
-////	ram_init();
-////
-////	// Allocate memory space
-////	// In translation to AVR, m becomes a long indicating the base address of the array
-////	// ...and is henceforth never used
-////	long m = avr_alloc(test_memory_size());
-////
-////	// Initialize memory space
-////	test_initialize();
-////
-////	/* load train/test data */
-////
-////	e = 0;
-////	train_y = load_labels("data/train-labels", &train_y_n);
-////	train_x = load_images("data/train-images", &train_x_n);
-////	test_y = load_labels("data/test-labels", &test_y_n);
-////	test_x = load_images("data/test-images", &test_x_n);
-////	if (!train_y ||
-////	    !train_x ||
-////	    !test_y ||
-////	    !test_x ||
-////	    (train_y_n != train_x_n) ||
-////	    (test_y_n != test_x_n)) {
-////		e = -1;
-////	}
-////	
-////	/* just test instead of training */
-////	
-////	/*
-////	read_ram();
-////	
-////	if (!e) {
-////		if (test(
-////				test_y,
-////				test_x,
-////				test_y_n)) {
-////			e = -1;
-////			fprintf(stderr, "failed to test\n");
-////		}
-////	}
-////	
-////	avr_free(m);
-////	free(train_y);
-////	free(train_x);
-////	free(test_y);
-////	free(test_x);
-////	return e;
-////	
-////	//*/
-////
-////	/* train and test */
-////
-////	for (i=0; i<EPOCHS; ++i) {
-////		if (!e) {
-////			if (train_and_test(
-////					   train_y,
-////					   train_x,
-////					   test_y,
-////					   test_x,
-////					   train_y_n,
-////					   test_y_n)) {
-////				e = -1;
-////			}
-////		}
-////	}
-////
-////	/* close */
-////
-////	avr_free(m);
-////	free(train_y);
-////	free(train_x);
-////	free(test_y);
-////	free(test_x);
-////	ram_close();
-////	return e;
-////}
+int mnist_main()
+{
+	int train_y_n, train_x_n, test_y_n, test_x_n;
+	uint8_t *train_y, *train_x, *test_y, *test_x;
+	int i, e;
+
+	// Start the RAM
+	ram_init();
+
+	// Allocate memory space
+	// In translation to AVR, m becomes a long indicating the base address of the array
+	// ...and is henceforth never used
+	long m = avr_alloc(test_memory_size());
+
+	// Initialize memory space
+	test_initialize();
+
+	float* x = malloc(784 * sizeof(float));
+	for(int i=0; i<784; ++i)
+		x[i] = (i % 256) / 255.0;
+		
+	float* y = test_activate(x);
+	free(y);
+	
+	e = 0;
+	avr_free(m);
+	/*
+	free(train_y);
+	free(train_x);
+	free(test_y);
+	free(test_x);
+	*/
+	ram_close();
+	return e;
+}
+
+#endif

@@ -14,7 +14,6 @@ I don't even really need an algorithm for the time being
 #ifndef _AVRMEM_H
 #define _AVRMEM_H
 
-#include "helper.h"
 #define RAM_PORT PORTC
 #define RAM_PIN PINC
 #define RAM_DDR DDRC
@@ -27,21 +26,21 @@ I don't even really need an algorithm for the time being
 
 void ram_init();
 
-long avr_alloc(long sz);
+long avr_alloc(unsigned long sz);
 
-void avr_free(long addr);
+void avr_free(unsigned long addr);
 
-void ram_write(long addr, unsigned char data, long nBytes); // equivalent to memset
+void ram_write(unsigned long addr, unsigned char data, unsigned long nBytes); // equivalent to memset
 
-void ram_write_float(long addr, float data);
+void ram_write_float(unsigned long addr, float data);
 
-unsigned char ram_read(long addr);
+unsigned char ram_read(unsigned long addr);
 
-float ram_read_float(long addr);
+float ram_read_float(unsigned long addr);
 
-void ram_inc_float(long addr, float data); // += operator
+void ram_inc_float(unsigned long addr, float data); // += operator
 
-void ram_cpy(long addr, const void* src, long nBytes); // memcpy
+void ram_cpy(unsigned long addr, const void* src, unsigned long nBytes); // memcpy
 
 void ram_close();
 

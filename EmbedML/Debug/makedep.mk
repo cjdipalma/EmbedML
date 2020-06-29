@@ -16,5 +16,5 @@ mnist-avr.c
 
 pff.c
 
-test-avr.c
+test.c
 

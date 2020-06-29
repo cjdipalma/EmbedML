@@ -29,7 +29,6 @@ void print_bit(char i, char target)
 
 void print_byte(unsigned char data)
 {
-	// I think clk 0, output 1. Double check later
 	for (int i=7; i>=0; --i)
 	{
 		print_bit(1, 0); // Clock bit on

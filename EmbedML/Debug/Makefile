@@ -44,7 +44,7 @@ C_SRCS +=  \
 ../main.c \
 ../mnist-avr.c \
 ../pff.c \
-../test-avr.c
+../test.c
 
 
 PREPROCESSING_SRCS += 
@@ -61,7 +61,7 @@ helper.o \
 main.o \
 mnist-avr.o \
 pff.o \
-test-avr.o
+test.o
 
 OBJS_AS_ARGS +=  \
 avrmem.o \
@@ -71,7 +71,7 @@ helper.o \
 main.o \
 mnist-avr.o \
 pff.o \
-test-avr.o
+test.o
 
 C_DEPS +=  \
 avrmem.d \
@@ -81,7 +81,7 @@ helper.d \
 main.d \
 mnist-avr.d \
 pff.d \
-test-avr.d
+test.d
 
 C_DEPS_AS_ARGS +=  \
 avrmem.d \
@@ -91,7 +91,7 @@ helper.d \
 main.d \
 mnist-avr.d \
 pff.d \
-test-avr.d
+test.d
 
 OUTPUT_FILE_PATH +=EmbedML.elf
 
@@ -156,7 +156,7 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-./test-avr.o: .././test-avr.c
+./test.o: .././test.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)D:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284 -B "D:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega1284" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

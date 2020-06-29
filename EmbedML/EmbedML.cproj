@@ -189,10 +189,10 @@
     <Compile Include="pffconf.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="test-avr.c">
+    <Compile Include="test.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="test-avr.h">
+    <Compile Include="test.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

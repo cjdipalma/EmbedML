@@ -57,36 +57,38 @@ char get_SO()
 
 void ram_init()
 {
+	/*
 	SET_BIT(RAM_DDR, RCS);
 	SET_BIT(RAM_DDR, RSI);
 	SET_BIT(RAM_DDR, RSCK);
 	CLR_BIT(RAM_DDR, RSO);
-	
 	deselect_ram();
+	*/
+	
+	RAM_DDR = 0b00010111;
+	RAM_PORT = 0b00010001;
 }
 
 // Replacement for malloc.
-long avr_alloc(long sz)
+long avr_alloc(unsigned long sz)
 {
 	return 0; // Only one thing allocated; the entire mem_arr
 }
 
-void avr_free(long addr)
+void avr_free(unsigned long addr)
 {
 	
 }
 
 // 24-bit address, 8-bit data
-void ram_write(long addr, unsigned char data, long nBytes) // Equivalent to memset
+void ram_write(unsigned long addr, unsigned char data, unsigned long nBytes) // Equivalent to memset
 {
 	select_ram();
-	avr_wait(1);
 	
 	// Write instruction
 	for(int i=7; i>=0; --i)
 	{
-		if (i == 1)	set_si_port(1);
-		else		set_si_port(0);
+		set_si_port(i == 1);
 		set_sck();
 		clr_sck();
 	}
@@ -100,9 +102,9 @@ void ram_write(long addr, unsigned char data, long nBytes) // Equivalent to mems
 	}
 	
 	// Data to write
-	for(int n=0; n<nBytes; ++n)
+	for(unsigned long n=0; n<nBytes; ++n)
 	{
-		for(int i=7; i>=0; --i)
+		for(int i=0; i<8; ++i)
 		{
 			set_si_port(GET_BIT(data, i));
 			set_sck();
@@ -112,27 +114,51 @@ void ram_write(long addr, unsigned char data, long nBytes) // Equivalent to mems
 	deselect_ram();
 }
 
-void ram_write_float(long addr, float data)
+void ram_write_float(unsigned long addr, float data)
 {
+	select_ram();
+	
+	// Write instruction
+	for(int i=7; i>=0; --i)
+	{
+		set_si_port(i == 1);
+		set_sck();
+		clr_sck();
+	}
+	
+	// Address
+	for(int i=23; i>=0; --i)
+	{
+		set_si_port(GET_BIT(addr, i));
+		set_sck();
+		clr_sck();
+	}
+	
 	unsigned char* p = (unsigned char*) &data;
 	
 	for(int i=0; i<4; ++i)
 	{
-		ram_write(addr+i, p[i], 1);
+		for(int j=0; j<8; ++j)
+		{
+			set_si_port(GET_BIT(p[i], j));
+			set_sck();
+			clr_sck();
+		}
 	}
+	
+	deselect_ram();
 }
 
 
 // 24-bit address, 8-bit data
-unsigned char ram_read(long addr)
+unsigned char ram_read(unsigned long addr)
 {
 	select_ram();
 	
 	// Read instruction
 	for(int i=7; i>=0; --i)
 	{
-		if (i <= 1)	set_si_port(1);
-		else		set_si_port(0);
+		set_si_port(i <= 1);
 		set_sck();
 		clr_sck();
 	}
@@ -148,7 +174,7 @@ unsigned char ram_read(long addr)
 	unsigned char output = 0;
 	
 	// Receive data
-	for(int i=7; i>=0; --i)
+	for(int i=0; i<8; ++i)
 	{
 		if(get_SO() != 0)
 			SET_BIT(output, i);
@@ -160,33 +186,90 @@ unsigned char ram_read(long addr)
 	return output;
 }
 
-float ram_read_float(long addr)
+float ram_read_float(unsigned long addr)
 {
+	select_ram();
+	
+	// Read instruction
+	for(int i=7; i>=0; --i)
+	{
+		set_si_port(i <= 1);
+		set_sck();
+		clr_sck();
+	}
+	
+	// Address
+	for(int i=23; i>=0; --i)
+	{
+		set_si_port(GET_BIT(addr, i));
+		set_sck();
+		clr_sck();
+	}
+	
+	// Read float
 	float a = 0;
 	unsigned char* ptr = (unsigned char*) &a;
 	
 	for(int i=0; i<4; ++i)
-	ptr[i] = ram_read(addr+i);
+	{
+		// Read char
+		// Receive data
+		for(int j=0; j<8; ++j)
+		{
+			if(get_SO() != 0)  SET_BIT(ptr[i], j);
+			set_sck();
+			clr_sck();
+		}
+	}
+	
+	deselect_ram();
 	return a;
 }
 
-void ram_inc_float(long addr, float data)
+void ram_inc_float(unsigned long addr, float data)
 {
 	float prev = ram_read_float(addr);
 	ram_write_float(addr, prev+data);
 }
 
-void ram_cpy(long addr, const void* src, long nBytes)
+void ram_cpy(unsigned long addr, const void* src, unsigned long nBytes)
 {
+	select_ram();
+	
+	// Write instruction
+	for(int i=7; i>=0; --i)
+	{
+		set_si_port(i == 1);
+		set_sck();
+		clr_sck();
+	}
+	
+	// Address
+	for(int i=23; i>=0; --i)
+	{
+		set_si_port(GET_BIT(addr, i));
+		set_sck();
+		clr_sck();
+	}
+	
+	// Data
 	const unsigned char* ptr = (const unsigned char*) src;
 	
-	for(int i=0; i<nBytes; ++i)
-		ram_write(addr+i, ptr[i], 1);
+	for(unsigned long i=0; i<nBytes; ++i)
+	{
+		for(int j=0; j<8; ++j)
+		{
+			set_si_port(GET_BIT(ptr[i], j));
+			set_sck();
+			clr_sck();
+		}
+	}
+	deselect_ram();
 }
 
 void ram_close()
 {
-	
+	RAM_DDR = 0b00000000;
 }
 
 #endif /* AVRMEM_H_ */

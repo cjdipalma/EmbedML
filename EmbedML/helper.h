@@ -12,11 +12,9 @@
 #define WRT_BYTE(p,b,i) ((p) |=  (b << (i * 8)))
 #define GET_BYTE(p,i) ((p) &   (11111111UL << (i * 8)))
 
-#define AVR_WAIT_TIME 3000
+#define AVR_WAIT_TIME 22000
 
 void avr_wait(unsigned short cmsec8);
-
-void set_si_port(char value);
 
 // void print_bit(char i);
 

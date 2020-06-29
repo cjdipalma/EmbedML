@@ -103,7 +103,7 @@ DSTATUS disk_initialize (void)
 	DSTATUS stat;
 
 	// Put your code here
-	avr_wait(12);
+	avr_wait(AVR_WAIT_TIME);
 	spi_init();
 	
 	// Following comment is from when I was trying to use USART. Irrelevant now but leaving it for reference.
@@ -129,14 +129,8 @@ DSTATUS disk_initialize (void)
 		count = 0;
 	} while (buff != 0x01);
 	
-	for (int i=0; i<5; ++i)
-		read_spi();
-	
-	SET_BIT(SD_PORT, CS);
-	/*
 	write_spi(0xFF);
-	
-	*/
+	SET_BIT(SD_PORT, CS);
 	
 	// Check voltage (CMD8)
 	char a[10] = "qwertyuiop";
@@ -152,13 +146,13 @@ DSTATUS disk_initialize (void)
 	SET_BIT(SD_PORT, CS);
 	
 	/* Print the voltage check pattern (passed 6/15/20)
-	for(int i=0; i<7; ++i)
+	for(int i=0; i<5; ++i)
 	{
 		print_byte(a[i]);
 		avr_wait(AVR_WAIT_TIME*4/5);
 	}
 	
-	return 0;
+	//return 0;
 	//*/
 	
 	// Check OCR (CMD58)
@@ -172,13 +166,15 @@ DSTATUS disk_initialize (void)
 	}
 	SET_BIT(SD_PORT, CS);
 	
-	/* Check contents of OCR (seems to pass 6/16/20)
-	for(int i=0; i<7; ++i)
+	//* Check contents of OCR (seems to pass 6/16/20)
+	for(int i=0; i<5; ++i)
 	{
 		print_byte(a[i]);
 		avr_wait(AVR_WAIT_TIME*4/5);
 	}
 	avr_wait(AVR_WAIT_TIME);
+	
+	//return 0;
 	//*/
 	
 	// Loops which have the potential to be infinite make me very sad :(
@@ -186,20 +182,17 @@ DSTATUS disk_initialize (void)
 	do 
 	{
 		// CMD55
-		do 
-		{
-			dummy_clocks(8);
-			command(0x77, 0x00000000, 0x65);
-			//proceed();
+		dummy_clocks(8);
+		command(0x77, 0x00000000, 0x65);
+		//proceed();
 		
-			do
-			{
-				buff = read_spi();
-				// print_byte(buff);
-				++count;
-			} while (buff != 0x01 && (count < 10));
-			count = 0;
-		} while (buff != 0x01);
+		do
+		{
+			buff = read_spi();
+			// print_byte(buff);
+			++count;
+		} while (buff != 0x01 && (count < 10));
+		count = 0;
 		//*
 		write_spi(0xFF);
 		for (int i=0; i<7; ++i)
@@ -208,22 +201,24 @@ DSTATUS disk_initialize (void)
 		//*/
 	
 		// ACMD41
-		do 
-		{
-			SET_BIT(SD_PORT, CS);
-			dummy_clocks(10);
-			command(0x69, 0x40000000, 0x77);
-			//proceed();
+		SET_BIT(SD_PORT, CS);
+		dummy_clocks(10);
+		command(0x69, 0x40000000, 0x77);
+		//proceed();
 		
-			do
-			{
-				buff = read_spi();
-				// print_byte(buff);
-				++count;
-			} while (!(buff == 0x00 || buff == 0x01) && (count < 10));
-			count = 0;
-		} while (!(buff == 0x00 || buff == 0x01)); // Nice DeMorgan's
-		//*
+		do
+		{
+			buff = read_spi();
+			// print_byte(buff);
+			++count;
+		} while (!(buff == 0x00 || buff == 0x01 || buff == 0x05) && (count < 10));
+		count = 0;
+		if (!(buff == 0x00 || buff == 0x01 || buff == 0x05 || buff == 0xFF))
+		{
+			print_byte(buff);
+			return STA_NOINIT; // Something wrong with SD card
+		}
+		
 		write_spi(0xFF);
 		for (int i=0; i<7; ++i)
 			read_spi();
@@ -242,12 +237,12 @@ DSTATUS disk_initialize (void)
 	SET_BIT(SD_PORT, CS);
 	
 	//* Check contents of OCR (seems to pass 6/16/20)
-	for(int i=0; i<7; ++i)
+	for(int i=0; i<5; ++i)
 	{
 		print_byte(a[i]);
 		avr_wait(AVR_WAIT_TIME*4/5);
 	}
-	avr_wait(AVR_WAIT_TIME*2);
+	avr_wait(AVR_WAIT_TIME);
 	//*/
 	
 	// Set block size (CMD50)
@@ -274,7 +269,7 @@ DSTATUS disk_initialize (void)
 	// Deselect SD card before leaving init
 	SET_BIT(SD_PORT, CS);
 
-	return stat;
+	return 0x00;
 }
 
 
